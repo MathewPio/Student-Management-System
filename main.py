@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QApplication, QLabel, QGridLayout, \
-    QLineEdit, QPushButton, QMainWindow, QTableWidget, QTableWidgetItem    
+    QLineEdit, QPushButton, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout    
 from PyQt6.QtGui import QAction
     
 import sys
@@ -16,6 +16,7 @@ class MainWindow(QMainWindow):
         
         
         add_student_action = QAction("Add a Student", self)
+        add_student_action.triggered.connect(self.insert)
         file_menu_item.addAction(add_student_action)
         
         about_action = QAction("About", self)
@@ -24,6 +25,7 @@ class MainWindow(QMainWindow):
         self.table = QTableWidget()
         self.table.setColumnCount(4)
         self.table.setHorizontalHeaderLabels(("Id", "Name", "Course", "Mobile"))
+        self.table.verticalHeader().setVisible(False)
         self.setCentralWidget(self.table)
     
     def load_data(self):
@@ -35,6 +37,29 @@ class MainWindow(QMainWindow):
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
         connection.close()
+        
+    def insert(self):
+        dialog = InsertDialog()
+        dialog.exec()
+        
+
+
+class InsertDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Insert Student Data")
+        self.setFixedWidth(300)
+        self.setFixedHeight(300)
+        
+        layout = QVBoxLayout()
+        
+        student_name = QLineEdit()
+        student_name.setPlaceholderText("Name")
+        layout.addWidget(student_name)
+        
+        self.setLayout(layout)
+        
+
     
 app = QApplication(sys.argv)
 main = MainWindow()
