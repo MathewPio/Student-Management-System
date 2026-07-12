@@ -19,14 +19,17 @@ class MainWindow(QMainWindow):
         edit_menu_item = self.menuBar().addMenu("&Edit")
         
         
+        # Add student 
         add_student_action = QAction("Add a Student", self)
         add_student_action.triggered.connect(self.insert)
         file_menu_item.addAction(add_student_action)
         
+        # About student 
         about_action = QAction("About", self)
         help_menu_item.addAction(about_action)
         about_action.setMenuRole(QAction.MenuRole.NoRole)
         
+        # Search 
         search_action = QAction("Search", self)
         edit_menu_item.addAction(search_action)
         search_action.triggered.connect(self.search)
@@ -47,10 +50,13 @@ class MainWindow(QMainWindow):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
         connection.close()
         
+        
+    # Insert Student
     def insert(self):
         dialog = InsertDialog()
         dialog.exec()
         
+    # Search Student
     def search(self):
         dialog = SearchDialog()
         dialog.exec()
