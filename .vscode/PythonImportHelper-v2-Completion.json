@@ -1,0 +1,113 @@
+[
+    {
+        "label": "QApplication",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QLabel",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QGridLayout",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "\\",
+        "importPath": "PyQt6.QtWidgets",
+        "description": "PyQt6.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QAction",
+        "importPath": "PyQt6.QtGui",
+        "description": "PyQt6.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt6.QtCore",
+        "description": "PyQt6.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "MainWindow",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class MainWindow(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"Student Management System\")\n        file_menu_item = self.menuBar().addMenu(\"&File\")\n        help_menu_item = self.menuBar().addMenu(\"&Help\")\n        edit_menu_item = self.menuBar().addMenu(\"&Edit\")\n        add_student_action = QAction(\"Add a Student\", self)\n        add_student_action.triggered.connect(self.insert)\n        file_menu_item.addAction(add_student_action)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "InsertDialog",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class InsertDialog(QDialog):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"Insert Student Data\")\n        self.setFixedWidth(300)\n        self.setFixedHeight(300)\n        layout = QVBoxLayout()\n        # Add Student name widget\n        self.student_name = QLineEdit()\n        self.student_name.setPlaceholderText(\"Name\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "SearchDialog",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class SearchDialog(QDialog):\n    def __init__(self):\n        super().__init__()\n        # Set window title and size\n        self.setWindowTitle(\"Search Student\")\n        self.setFixedWidth(300)\n        self.setFixedHeight(300)\n        # Create layout and layout input\n        layout = QVBoxLayout()\n        self.student_name = QLineEdit()",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = QApplication(sys.argv)\nmain = MainWindow()\nmain.show()\nmain.load_data()\nsys.exit(app.exec())",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "main = MainWindow()\nmain.show()\nmain.load_data()\nsys.exit(app.exec())",
+        "detail": "main",
+        "documentation": {}
+    }
+]
