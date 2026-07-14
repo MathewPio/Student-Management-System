@@ -105,7 +105,7 @@
         "kind": 6,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "class EditDialog(QDialog):\n    pass\nclass DeleteDialog(QDialog):\n    pass    \napp = QApplication(sys.argv)\nmain = MainWindow()\nmain.show()\nmain.load_data()\nsys.exit(app.exec())",
+        "peekOfCode": "class EditDialog(QDialog):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"Update Student Data\")\n        self.setFixedWidth(300)\n        self.setFixedHeight(300)\n        layout = QVBoxLayout()\n        # Get the student's details\n        index = main.table.currentRow()\n        student_name = main.table.item(index, 1).text()",
         "detail": "main",
         "documentation": {}
     },
