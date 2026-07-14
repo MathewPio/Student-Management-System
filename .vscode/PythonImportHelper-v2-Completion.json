@@ -40,6 +40,14 @@
         "documentation": {}
     },
     {
+        "label": "QIcon",
+        "importPath": "PyQt6.QtGui",
+        "description": "PyQt6.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt6.QtGui",
+        "documentation": {}
+    },
+    {
         "label": "Qt",
         "importPath": "PyQt6.QtCore",
         "description": "PyQt6.QtCore",
@@ -70,7 +78,7 @@
         "kind": 6,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "class MainWindow(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"Student Management System\")\n        file_menu_item = self.menuBar().addMenu(\"&File\")\n        help_menu_item = self.menuBar().addMenu(\"&Help\")\n        edit_menu_item = self.menuBar().addMenu(\"&Edit\")\n        # Add student \n        add_student_action = QAction(\"Add a Student\", self)\n        add_student_action.triggered.connect(self.insert)",
+        "peekOfCode": "class MainWindow(QMainWindow):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"Student Management System\")\n        file_menu_item = self.menuBar().addMenu(\"&File\")\n        help_menu_item = self.menuBar().addMenu(\"&Help\")\n        edit_menu_item = self.menuBar().addMenu(\"&Edit\")\n        # Add student \n        add_student_action = QAction(QIcon(\"icons/add.png\"), \"Add a Student\", self)\n        add_student_action.triggered.connect(self.insert)",
         "detail": "main",
         "documentation": {}
     },
