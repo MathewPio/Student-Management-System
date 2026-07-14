@@ -101,6 +101,24 @@
         "documentation": {}
     },
     {
+        "label": "EditDialog",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class EditDialog(QDialog):\n    pass\nclass DeleteDialog(QDialog):\n    pass    \napp = QApplication(sys.argv)\nmain = MainWindow()\nmain.show()\nmain.load_data()\nsys.exit(app.exec())",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteDialog",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class DeleteDialog(QDialog):\n    pass    \napp = QApplication(sys.argv)\nmain = MainWindow()\nmain.show()\nmain.load_data()\nsys.exit(app.exec())",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
         "label": "app",
         "kind": 5,
         "importPath": "main",

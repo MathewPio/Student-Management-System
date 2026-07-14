@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QApplication, QLabel, QGridLayout, \
     QLineEdit, QPushButton, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, \
-    QComboBox, QToolBar   
+    QComboBox, QToolBar, QStatusBar
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtCore import Qt
     
@@ -47,6 +47,28 @@ class MainWindow(QMainWindow):
         
         toolbar.addAction(add_student_action)
         toolbar.addAction(search_action)
+        
+        # CREATE STATUS BAR AND ADD STATUS BAR ELEMENTS
+        self.statusbar = QStatusBar()
+        self.setStatusBar(self.statusbar)
+        
+        # Detect a cell click
+        self.table.cellClicked.connect(self.cell_Clicked)
+        
+    def cell_Clicked(self):
+        edit_button = QPushButton("Edit Record")
+        edit_button.clicked.connect(self.edit)
+        
+        delete_button = QPushButton("Delete Record")
+        delete_button.clicked.connect(self.delete)
+        
+        children = self.findChildren(QPushButton)
+        if children:
+            for child in children:
+                self.statusbar.removeWidget(child)
+        
+        self.statusbar.addWidget(edit_button)
+        self.statusbar.addWidget(delete_button)
     
     
     def load_data(self):
@@ -65,11 +87,20 @@ class MainWindow(QMainWindow):
         dialog = InsertDialog()
         dialog.exec()
         
-    # Search Student
+    # Search Student 
     def search(self):
         dialog = SearchDialog()
         dialog.exec()
         
+    # Edit Student dialog
+    def edit(self):
+        dialog = EditDialog()
+        dialog.exec()
+        
+    # Delete Student dialog
+    def delete(self):
+        dialog = DeleteDialog()
+        dialog.exec()        
 
 
 class InsertDialog(QDialog):
@@ -156,6 +187,13 @@ class SearchDialog(QDialog):
         cursor.close()
         connection.close()
         
+        
+class EditDialog(QDialog):
+    pass
+    
+class DeleteDialog(QDialog):
+    pass    
+    
     
 app = QApplication(sys.argv)
 main = MainWindow()
