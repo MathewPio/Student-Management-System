@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QApplication, QLabel, QGridLayout, \
     QLineEdit, QPushButton, QMainWindow, QTableWidget, QTableWidgetItem, QDialog, QVBoxLayout, \
-    QComboBox, QToolBar, QStatusBar
+    QComboBox, QToolBar, QStatusBar, QMessageBox
 from PyQt6.QtGui import QAction, QIcon
 from PyQt6.QtCore import Qt
     
@@ -30,7 +30,7 @@ class MainWindow(QMainWindow):
         about_action.setMenuRole(QAction.MenuRole.NoRole)
         
         # Search 
-        search_action = QAction(QIcon("icons\search.png"), "Search", self)
+        search_action = QAction(QIcon("icons/search.png"), "Search", self)
         edit_menu_item.addAction(search_action)
         search_action.triggered.connect(self.search)
         
@@ -243,8 +243,58 @@ class EditDialog(QDialog):
         main.load_data()
     
 class DeleteDialog(QDialog):
-    pass    
-    
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Update Student Data")
+        
+        layout = QGridLayout()
+        confirmation = QLabel("Are you sure you want to delete?")
+        yes = QPushButton("Yes")
+        no = QPushButton("No")
+        
+        layout.addWidget(confirmation, 0, 0, 1, 2)
+        layout.addWidget(yes, 1, 0)
+        layout.addWidget(no, 1, 1)
+        self.setLayout(layout)
+        
+        yes.clicked.connect(self.delete_student)
+        
+    def delete_student(self):
+        # Get selected row index and student id
+        index = main.table.currentRow()
+        student_id = main.table.item(index, 0).text()
+        
+        connection = sqlite3.connect("database.db")
+        cursor = connection.cursor()
+        cursor.execute("DELETE from students WHERE id = ?", (student_id, ))
+        
+        # Ordering the Numbers
+        
+        # Get the remaining students ordered by ID
+        cursor.execute("SELECT * FROM students ORDER BY id")
+        students = cursor.fetchall()
+        
+        # Reset IDs starting from 1
+        new_id = 1
+        for student in students:
+            old_id = student[0]
+            cursor.execute(
+                "UPDATE students SET id = ? WHERE id = ?",
+                (new_id, old_id)
+            )
+            new_id += 1
+        
+        connection.commit()
+        cursor.close()
+        connection.close()
+        main.load_data()
+        
+        self.close()
+        
+        confirmation_widget = QMessageBox()
+        confirmation_widget.setWindowTitle("Success")
+        confirmation_widget.setText("The record was deleted Successfully!")
+        confirmation_widget.exec()
     
 app = QApplication(sys.argv)
 main = MainWindow()

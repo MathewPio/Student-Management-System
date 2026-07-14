@@ -114,7 +114,7 @@
         "kind": 6,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "class DeleteDialog(QDialog):\n    pass    \napp = QApplication(sys.argv)\nmain = MainWindow()\nmain.show()\nmain.load_data()\nsys.exit(app.exec())",
+        "peekOfCode": "class DeleteDialog(QDialog):\n    def __init__(self):\n        super().__init__()\n        self.setWindowTitle(\"Update Student Data\")\n        layout = QGridLayout()\n        confirmation = QLabel(\"Are you sure you want to delete?\")\n        yes = QPushButton(\"Yes\")\n        no = QPushButton(\"No\")\n        layout.addWidget(confirmation, 0, 0, 1, 2)\n        layout.addWidget(yes, 1, 0)",
         "detail": "main",
         "documentation": {}
     },
